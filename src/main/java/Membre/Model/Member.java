@@ -1,8 +1,7 @@
-package Model;
+package Membre.Model;
 
-import java.time.LocalDate;
 import java.util.Date;
-import Model.User;
+import User.Model.User;
 
 public class Member extends User{
     private int id;
@@ -15,6 +14,15 @@ public class Member extends User{
         this.sport = sport;
         this.date = date;
     }
+
+    public Member(int idMember, int userId, String sport, String dateDeNaissance) {
+
+    }
+
+    public Member() {
+
+    }
+
     public int getId() {
         return id;
     }

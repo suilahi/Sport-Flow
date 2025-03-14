@@ -1,8 +1,7 @@
-package Web;
+package User.Web;
 
-import Dao.Dbconnection;
-import Dao.UserDao;
-import Model.User;
+import User.Dao.UserDao;
+import User.Model.User;
 
 import java.io.IOException;
 import java.sql.SQLException;

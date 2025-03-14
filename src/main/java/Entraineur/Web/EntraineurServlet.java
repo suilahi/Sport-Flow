@@ -1,4 +1,4 @@
-package Web;
+package Entraineur.Web;
 
 public class EntraineurServlet {
 }

@@ -1,6 +1,4 @@
-package Web;
-
-import com.mysql.cj.Session;
+package User.Web;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

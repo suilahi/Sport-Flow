@@ -1,15 +1,12 @@
-package Dao;
+package User.Dao;
 
 import java.sql.Connection;
-import Dao.Dbconnection;
-import Model.User;
 
-import java.sql.Connection;
+import User.Model.User;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDao {
 
@@ -46,4 +43,5 @@ public class UserDao {
         }
         return null;
     }
+
 }

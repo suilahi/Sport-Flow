@@ -1,6 +1,6 @@
-package Model;
+package Entraineur.Model;
 
-import Model.User;
+import User.Model.User;
 
 public class Coach extends User {
    private String spacialite;
