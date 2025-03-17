@@ -7,49 +7,39 @@
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-screen" style="background-image: url('https://images.pexels.com/photos/945471/pexels-photo-945471.jpeg?auto=compress&cs=tinysrgb&h=1080&w=1920');">
+<body class="bg-cover bg-center bg-no-repeat min-h-screen flex flex-col" style="background-image: url('https://images.pexels.com/photos/945471/pexels-photo-945471.jpeg?auto=compress&cs=tinysrgb&h=1080&w=1920');">
+<div class="login-container">
+    <!-- Form Section -->
+    <div class="form-section">
+        <h2 class="text-4xl font-bold text-center text-[#FFD700] mb-8 animate-slide-in">Login to SportFlow</h2>
 
-<nav class="bg-gray-700 shadow-lg p-4 fixed top-0 left-0 w-full">
-    <div class="container mx-auto flex justify-between items-center">
-        <a href="index.jsp" class="text-white text-2xl font-semibold">SportFlow</a>
-        <div class="space-x-4">
-            <a href="index.jsp" class="text-white hover:text-blue-300">Accueil</a>
-            <a href="Membre.jsp" class="text-white hover:text-blue-300">Activités</a>
-            <a href="Entraineur.jsp" class="text-white hover:text-blue-300">Coachs</a>
-            <a href="Login.jsp" class="text-white hover:text-blue-300">Connexion</a>
-            <a href="Register.jsp" class="text-white hover:text-blue-300">Inscription</a>
-        </div>
+        <% if (request.getAttribute("errorMessage") != null) { %>
+        <p class="text-red-500 text-center mb-4 animate-pulse"><%= request.getAttribute("errorMessage") %></p>
+        <% } %>
+
+        <form action="login" method="post" class="space-y-5">
+            <div class="animate-slide-in" style="animation-delay: 0.1s;">
+                <label for="email" class="block text-[#FFD700] font-semibold text-lg">Email</label>
+                <input type="text" id="email" name="email" class="w-full p-3 bg-[#1a1a1a] text-white border border-[#FFD700] rounded-lg" required>
+            </div>
+
+            <div class="animate-slide-in" style="animation-delay: 0.2s;">
+                <label for="password" class="block text-[#FFD700] font-semibold text-lg">Password</label>
+                <input type="password" id="password" name="password" class="w-full p-3 bg-[#1a1a1a] text-white border border-[#FFD700] rounded-lg" required>
+            </div>
+
+            <div class="space-y-4">
+                <div class="animate-slide-in text-white text-lg" style="animation-delay: 0.3s;">
+                    <input type="submit" value="login" class="w-full p-3 btn-gold rounded-lg cursor-pointer">
+                </div>
+                <div class="flex justify-between animate-slide-in" style="animation-delay: 0.4s;">
+                    <a href="index.jsp" class="w-1/2 mr-2 p-3 btn-outline text-lg text-white text-center rounded-lg">Back to Home</a>
+                    <a href="Register.jsp" class="w-1/2 ml-2 p-3 btn-outline text-lg text-white text-center rounded-lg">Register</a>
+                </div>
+            </div>
+        </form>
     </div>
-</nav>
 
-<div class="bg-white p-8 rounded-lg shadow-md w-96">
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Connexion</h2>
-
-
-    <form action="login" method="POST">
-        <div class="mb-4">
-            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="off"
-                   class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-black"
-                   placeholder="Votre email">
-        </div>
-
-        <div class="mb-4">
-            <label for="password" class="block text-sm font-medium text-gray-700">Mot de Passe</label>
-            <input type="password" id="password" name="password" required autocomplete="off"
-                   class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-black"
-                   placeholder="Votre mot de passe">
-        </div>
-
-        <button type="submit" class="w-full py-2 mt-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            Se Connecter
-        </button>
-    </form>
-
-    <div class="mt-4 text-center">
-        <a href="Register.jsp" class="text-sm text-blue-500 hover:underline">Créer un compte</a>
-    </div>
 </div>
-
 </body>
 </html>

@@ -12,7 +12,7 @@ import java.util.logging.LogRecord;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
-@WebFilter({"/Membre.jsp","/Entraineur.jsp"})
+@WebFilter({"/Membre.jsp","/Coach.jsp"})
 public class LoginFilter implements Filter {
 
 

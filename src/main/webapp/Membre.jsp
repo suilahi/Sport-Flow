@@ -1,82 +1,60 @@
-<%@ page import="User.Model.User" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="Membre.Model.Member" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="javax.servlet.http.HttpSession" %>
-
-
 <html>
 <head>
-    <title>Membre</title>
+    <title>Liste des Membres</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class ="bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-screen" style="background-image: url('https://images.pexels.com/photos/945471/pexels-photo-945471.jpeg?auto=compress&cs=tinysrgb&h=1080&w=1920');">
-<nav class="bg-gray-700 shadow-lg p-4 fixed top-0 left-0 w-full">
+<body class="bg-gray-100">
+<nav class="bg-gray-700 shadow-lg p-4">
     <div class="container mx-auto flex justify-between items-center">
         <a href="index.jsp" class="text-white text-2xl font-semibold">SportFlow</a>
         <div class="space-x-4">
             <a href="index.jsp" class="text-white hover:text-blue-300">Accueil</a>
-            <a href="Membre.jsp" class="text-white hover:text-blue-300">Activités</a>
-            <a href="Entraineur.jsp" class="text-white hover:text-blue-300">Coachs</a>
+            <a href="Membre.jsp" class="text-white hover:text-blue-300">Membres</a>
+            <a href="Coach.jsp" class="text-white hover:text-blue-300">Coachs</a>
             <a href="Login.jsp" class="text-white hover:text-blue-300">Connexion</a>
             <a href="Register.jsp" class="text-white hover:text-blue-300">Inscription</a>
+            <a href="logout" class="nav-link text-[#FFD700] text-xl font-semibold hover:text-red-500">Logout</a>
+
         </div>
     </div>
 </nav>
-<div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg w-full max-w mb-6">
-    <table class="w-full table-auto">
+
+<div class="container mx-auto mt-10 p-8 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-center">Liste des Membres</h2>
+    <a href="addMembre.jsp" class="mb-4 inline-block bg-green-500 text-white px-4 py-2 rounded">Ajouter un Membre</a>
+    <table class="min-w-full bg-white border border-gray-200">
         <thead>
         <tr>
-            <th class="text-black px-4 py-2 text-left">Nom d'utilisateur</th>
-            <th class="text-black px-4 py-2 text-left">Date</th>
-            <th class="text-black px-4 py-2 text-left">Heure</th>
-            <th class="text-black px-4 py-2 text-left">Actions</th>
+            <th class="py-2 px-4 border">ID</th>
+            <th class="py-2 px-4 border">Name</th>
+            <th class="py-2 px-4 border">Email</th>
+            <th class="py-2 px-4 border">Sport</th>
+            <th class="py-2 px-4 border">Date de Naissance</th>
         </tr>
         </thead>
         <tbody>
+        <% List<Member> members = (List<Member>) request.getAttribute("members");
+            if (members != null) {
+                for (Member member : members) { %>
+        <td class="py-2 px-4 border"><%= member.getId() %></td>
+        <td class="py-2 px-4 border"><%= member.getUserame() %></td>
+        <td class="py-2 px-4 border"><%= member.getEmail() %></td>
+        <td class="py-2 px-4 border"><%= member.getSport() %></td>
+        <td class="py-2 px-4 border"><%= member.getDateNaissance() %></td>
 
-        <tr>
-            <td class="text-black px-4 py-2">John Doe</td>
-            <td class="text-black px-4 py-2">2025-02-20</td>
-            <td class="text-black px-4 py-2">14:00</td>
-            <td class="px-4 py-2">
-                <div class="flex space-x-2">
-                    <form action="/confirmer" method="post" class="inline">
-                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded-md">Confirmer</button>
-                    </form>
-
-                    <form action="/annuler" method="post" class="inline">
-                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-md">Annuler</button>
-                    </form>
-
-                    <form action="/update" method="post" class="inline">
-                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-3 rounded-md">Modifier</button>
-                    </form>
-                </div>
+        <a href="editCoach.jsp?id=<%=member.getId()%>" class="text-blue-500">Modifier</a>
+                |
+        <a href="editCoach.jsp"<%= member.getId() %> class="text-red-500" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?');">Supprimer</a>
             </td>
         </tr>
-        <tr>
-            <td class="text-black px-4 py-2">John Doe</td>
-            <td class="text-black px-4 py-2">2025-02-20</td>
-            <td class="text-black px-4 py-2">14:00</td>
-            <td class="px-4 py-2">
-                <div class="flex space-x-2">
-                    <form action="/confirmer" method="post" class="inline">
-                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded-md">Confirmer</button>
-                    </form>
-
-                    <form action="/annuler" method="post" class="inline">
-                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-md">Annuler</button>
-                    </form>
-
-                    <form action="/update" method="post" class="inline">
-                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-3 rounded-md">Modifier</button>
-                    </form>
-                </div>
-            </td>
-        </tr>
+        <%    }
+        } %>
         </tbody>
     </table>
 </div>
-<a href="logout" class="fixed right-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">
-    Se deconnecter</a>
 </body>
 </html>

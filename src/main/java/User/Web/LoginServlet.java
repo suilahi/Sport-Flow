@@ -1,10 +1,9 @@
 package User.Web;
 
+import Entraineur.Dao.EntraineurDAO;
+import Entraineur.Model.Entraineur;
 import Membre.Dao.MembreDao;
 import Membre.Model.Member;
-import User.Dao.Dbconnection;
-import User.Dao.UserDao;
-import User.Model.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -13,29 +12,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-
     private MembreDao memberDAO = new MembreDao();
+    private EntraineurDAO entraineurDAO = new EntraineurDAO();
 
-    public LoginServlet() throws SQLException {
-    }
 
     @Override
     public void init() throws ServletException {
         super.init();
 
-        try {
-            memberDAO = new MembreDao();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        memberDAO = new MembreDao();
+        entraineurDAO = new EntraineurDAO();
 
 
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
@@ -44,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
 
-        Member member = MembreDao.loginMember(email,password);
+        Member member = memberDAO.loginMember(email,password);
         if (member != null) {
             session.setAttribute("user", member);
             System.out.println("Logiin succes");
@@ -53,6 +46,15 @@ public class LoginServlet extends HttpServlet {
         }
 
 
+        Entraineur entraineur = entraineurDAO.loginEntraineur(email,password);
+
+
+        if (entraineur != null) {
+            session.setAttribute("user", entraineur);
+            System.out.println("Logiin succes");
+            resp.sendRedirect("Coach.jsp");
+            return;
+        }
 
 
 
@@ -60,12 +62,8 @@ public class LoginServlet extends HttpServlet {
 
 
         req.setAttribute("errorMessage", "Invalid email or password!");
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
+        req.getRequestDispatcher("Login.jsp").forward(req, resp);
 
     }
 
-
 }
-
-
-

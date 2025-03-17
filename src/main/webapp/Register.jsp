@@ -7,45 +7,95 @@
     <title>Créer un Compte - SportFlow</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-blue-300 to-teal-300 min-h-screen flex flex-col"style="background-image: url('https://images.pexels.com/photos/945471/pexels-photo-945471.jpeg?auto=compress&cs=tinysrgb&h=1080&w=1920');">
 
-<nav class="bg-gray-700 shadow-lg p-4">
-    <div class="container mx-auto flex justify-between items-center">
-        <a href="index.jsp" class="text-white text-2xl font-semibold">SportFlow</a>
-        <div class="space-x-4">
-            <a href="index.jsp" class="text-white hover:text-blue-300">Accueil</a>
-            <a href="Membre.jsp" class="text-white hover:text-blue-300">Activités</a>
-            <a href="Entraineur.jsp" class="text-white hover:text-blue-300">Coachs</a>
-            <a href="Login.jsp" class="text-white hover:text-blue-300">Connexion</a>
-            <a href="Register.jsp" class="text-white hover:text-blue-300">Inscription</a>
-        </div>
-    </div>
-</nav>
+<body class="bg-cover bg-center bg-no-repeat min-h-screen flex flex-col" style="background-image: url('https://images.pexels.com/photos/945471/pexels-photo-945471.jpeg?auto=compress&cs=tinysrgb&h=1080&w=1920');">
+<div class="register-container">
 
-<div class="flex justify-center items-center flex-grow">
-    <div class="bg-white p-8 rounded-lg shadow-md w-96 text-center">
-        <h2 class="text-2xl font-bold text-gray-700 mb-6">Créer un Compte</h2>
-        <form action="register" method="post">
-            <div class="mb-4">
-                <input type="text" name="name" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="Nom complet" required>
-            </div>
-            <div class="mb-4">
-                <input type="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="Email" required>
-            </div>
-            <div class="mb-4">
-                <input type="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="Mot de passe" required>
-            </div>
-            <div class="mb-4">
-                <select name="role" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" required>
-                    <option value="">Sélectionner un rôle</option>
-                    <option value="Membre">Membre</option>
-                    <option value="Entraineur">Entraîneur</option>
+    <div class="form-section">
+        <h2 class="text-4xl font-bold text-center text-black mb-8 animate-slide-in">WELCOME SportFlow</h2>
+        <form id="registerForm" action="register" method="post" class="space-y-5">
+
+            <div class="animate-slide-in" style="animation-delay: 0.1s;">
+                <label for="role" class="block text-white font-semibold text-lg">I am a:</label>
+                <select id="role" name="role" class="w-full p-3 bg-[#1a1a1a] text-white border border-red rounded-lg focus:border-[#FFD700]" required>
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="member">Member</option>
+                    <option value="entraineur">Entraineur</option>
                 </select>
             </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">S'inscrire</button>
+
+            <!-- Common Fields -->
+            <div id="commonFields" class="space-y-5">
+                <div class="animate-slide-in" style="animation-delay: 0.2s;">
+                    <label for="username" class="block text-white font-semibold">Username</label>
+                    <input type="text" id="username" name="username" class="w-full p-3 bg-[#1a1a1a] text-white border border-white rounded-lg" required>
+                </div>
+                <div class="animate-slide-in" style="animation-delay: 0.3s;">
+                    <label for="email" class="block text-white font-semibold">Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-3 bg-[#1a1a1a] text-white border border-white rounded-lg" required>
+                </div>
+                <div class="animate-slide-in" style="animation-delay: 0.4s;">
+                    <label for="password" class="block text-white font-semibold">Password</label>
+                    <input type="password" id="password" name="password" class="w-full p-3 bg-[#1a1a1a] text-white border border-white rounded-lg" required>
+                </div>
+            </div>
+
+            <div id="memberFields" class="space-y-5 hidden">
+                <div class="animate-slide-in" style="animation-delay: 0.5s;">
+                    <label for="dateNaissance" class="block text-white font-semibold">Date of Birth</label>
+                    <input type="date" id="dateNaissance" name="dateNaissance" class="w-full p-3 bg-[#1a1a1a] text-white border border-white rounded-lg">
+                </div>
+                <div class="animate-slide-in" style="animation-delay: 0.6s;">
+                    <label for="sport" class="block text-white font-semibold">Sport</label>
+                    <input type="text" id="sport" name="sport" class="w-full p-3 bg-[#1a1a1a] text-white border border-white rounded-lg">
+                </div>
+            </div>
+
+            <div id="entraineurFields" class="space-y-5 hidden">
+                <div class="animate-slide-in" style="animation-delay: 0.5s;">
+                    <label for="specialite" class="block text-white font-semibold">Specialty</label>
+                    <input type="text" id="specialite" name="specialite" class="w-full p-3 bg-[#1a1a1a] text-white border border-white rounded-lg">
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="animate-slide-in text-white text-l" style="animation-delay: 0.7s;">
+                    <input type="submit" value="register" class="w-full p-3 btn-gold rounded-lg cursor-pointer">
+                </div>
+                <div class="flex justify-between animate-slide-in" style="animation-delay: 0.8s;">
+                    <a href="index.jsp" class="w-1/2 mr-2 p-3 text-white text-l text-center rounded-lg">Back to Home</a>
+                    <a href="Login.jsp" class="w-1/2 ml-2 p-3 text-white text-l text-center rounded-lg">Login</a>
+                </div>
+            </div>
         </form>
-        <p class="mt-4 text-sm">Déjà inscrit ? <a href="index.jsp" class="text-blue-500 hover:underline">Se connecter</a></p>
     </div>
 </div>
+
+<script>
+    const roleSelect = document.getElementById('role');
+    const memberFields = document.getElementById('memberFields');
+    const entraineurFields = document.getElementById('entraineurFields');
+
+    roleSelect.addEventListener('change', function() {
+        if (this.value === 'member') {
+            memberFields.classList.remove('hidden');
+            entraineurFields.classList.add('hidden');
+
+            document.getElementById('dateNaissance').required = true;
+            document.getElementById('sport').required = true;
+            document.getElementById('specialite').required = false;
+        } else if (this.value === 'entraineur') {
+            memberFields.classList.add('hidden');
+            entraineurFields.classList.remove('hidden');
+
+            document.getElementById('dateNaissance').required = false;
+            document.getElementById('sport').required = false;
+            document.getElementById('specialite').required = true;
+        } else {
+            memberFields.classList.add('hidden');
+            entraineurFields.classList.add('hidden');
+        }
+    });
+</script>
 </body>
 </html>

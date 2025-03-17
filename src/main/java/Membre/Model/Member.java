@@ -3,43 +3,102 @@ package Membre.Model;
 import java.util.Date;
 import User.Model.User;
 
-public class Member extends User{
+public class Member{
     private int id;
+    private String username;
+    private String email;
+    private String password;
+    private String dateNaissance;
     private String sport;
-    private Date date;
 
-    public Member(int id,String name,String email,String password, String sport, Date date) {
-        super(id,name,email,password,sport,date);
+
+    public Member(int id, String username, String email, String password, String dateNaissance, String sport) {
         this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.dateNaissance = dateNaissance;
         this.sport = sport;
-        this.date = date;
     }
 
-    public Member(int idMember, int userId, String sport, String dateDeNaissance) {
+    public Member(String username, String email, String password, String dateNaissance, String sport) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.dateNaissance = dateNaissance;
+        this.sport = sport;
+    }
 
+    public Member(int id, String username, String email, String dateNaissance, String sport) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.dateNaissance = dateNaissance;
+        this.sport = sport;
     }
 
     public Member() {
 
     }
 
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getUserame() {
+        return username;
+    }
+
+    public void setUserame(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(String dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
     public String getSport() {
         return sport;
     }
+
     public void setSport(String sport) {
         this.sport = sport;
     }
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", dateNaissance='" + dateNaissance + '\'' +
+                ", sport='" + sport + '\'' +
+                '}';
+    }
 }

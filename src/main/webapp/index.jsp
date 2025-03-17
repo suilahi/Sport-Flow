@@ -14,8 +14,8 @@
         <a href="index.jsp" class="text-white text-2xl font-semibold">SportFlow</a>
         <div class="space-x-4">
             <a href="index.jsp" class="text-white hover:text-blue-300">Accueil</a>
-            <a href="Membre.jsp" class="text-white hover:text-blue-300">Activités</a>
-            <a href="Entraineur.jsp" class="text-white hover:text-blue-300">Coachs</a>
+            <a href="Membre.jsp" class="text-white hover:text-blue-300">Membre</a>
+            <a href="Coach.jsp" class="text-white hover:text-blue-300">Coachs</a>
             <a href="Login.jsp" class="text-white hover:text-blue-300">Connexion</a>
             <a href="Register.jsp" class="text-white hover:text-blue-300">Inscription</a>
         </div>
